@@ -1,0 +1,24 @@
+<!--새 글을 작성하는 페이지-->
+{% extends 'crudapp/index.html' %}
+
+{% block content %}
+<section class="page-section bg-primary" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 text-center">
+                <!--입력 받은 form이 POST를 요청할 경우-->
+                <form method="POST" enctype="multipart/form-data">
+                    <!--csrf token을 확인하고 존재하지 않으면 에러를 띄운다-->
+                    {% csrf_token %}
+                    <table>
+                        {{form.as_table}}
+                    </table>
+                    <!--글을 작성할 수 있는 버튼을 삽입-->
+                    <button class="btn btn-primary btn-xl" type="submit">Submit</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

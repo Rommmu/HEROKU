@@ -1,0 +1,63 @@
+<!--상속 하는 기본 부트스트랩 템플릿 페이지-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>LIKELION 9TH CRUD</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'crudapp/assets/favicon.ico' %}" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'crudapp/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'main' %}">MAIN</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active px-lg-3 py-3 py-lg-4" aria-current="page" href="{% url 'create' %}">CREATE</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'read' %}">READ</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'hashtag' %}">HASHTAG</a></li>
+                        {% if user.is_active %}
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'logout' %}">로그아웃</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4">{{ user.username }}님 안녕하세요</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}">로그인</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'signup' %}">회원가입</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Page content-->
+        <div class="container">
+            <div class="text-center mt-5">
+                <h1>LIKELION 9th CRUD FORM</h1>
+                <p class="lead">멋쟁이 사자처럼 9기 아기사자 주영빈</p>
+                <p>어흥</p>
+            </div>
+        </div>
+        {% block createButton %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; LIKELION9 AT SKHU</div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'crudapp/js/scripts.js' %}"></script>
+    </body>
+</html>

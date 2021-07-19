@@ -1,0 +1,9 @@
+{% extends 'crudapp/index.html' %}
+
+{% block content %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">로그인</button>
+    </form>
+{% endblock %}

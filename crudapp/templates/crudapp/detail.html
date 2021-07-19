@@ -1,0 +1,33 @@
+{% extends 'crudapp/index.html' %}
+
+{% block content %}
+<section class="page-section" id="services">
+    <div class="container px-4 px-lg-5">
+        <h2 class="text-center mt-0">TITLE: {{post.title}}</h2>
+        <hr class="divider" />
+        <p>{{ post.pub_date }}</p>
+        <p>{{ post.writer }}</p>
+        <p>{{ post.body }}</p>
+        {% if post.image %}
+            <img src="{{ post.image.url }}" width="250" height="250" alt="Card image cap">
+        {% endif %}
+        <br>
+        <a href="{% url 'edit' post.id %}">Edit</a>
+        <a href="{% url 'delete' post.id %}">Delete</a>       
+        <br><br><br>
+
+        {% for comment in post.comments.all %}
+            <p>{{comment.text}}</p>
+        {% endfor %}
+        {% for hashtag in post.hashtags.all %}
+            <span>{{ hashtag.name }}</span>
+        {% endfor %}
+        <br>
+        <form method = "POST" action = "{% url 'detail' post.id %}">
+            {% csrf_token %}
+            <p>{{ form.as_p }}</p>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+</section>
+{% endblock %}
